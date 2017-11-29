@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.0
--- https://www.phpmyadmin.net/
+-- version 4.5.4.1
+-- http://www.phpmyadmin.net
 --
--- Hôte : 127.0.0.1
--- Généré le :  mer. 22 nov. 2017 à 16:17
--- Version du serveur :  5.7.17
--- Version de PHP :  7.1.3
+-- Client :  localhost
+-- Généré le :  Mer 29 Novembre 2017 à 15:03
+-- Version du serveur :  5.7.11
+-- Version de PHP :  7.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -33,13 +31,13 @@ USE db_milkshare;
 
 CREATE TABLE `t_article` (
   `idArticle` int(11) NOT NULL,
-  `artNom` varchar(150) COLLATE utf8_general_ci NOT NULL,
+  `artNom` varchar(150) NOT NULL,
   `artPrix` decimal(15,3) NOT NULL,
-  `artDescription` tinytext COLLATE utf8_general_ci
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `artDescription` tinytext
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `t_article`
+-- Contenu de la table `t_article`
 --
 
 INSERT INTO `t_article` (`idArticle`, `artNom`, `artPrix`, `artDescription`) VALUES
@@ -54,22 +52,28 @@ INSERT INTO `t_article` (`idArticle`, `artNom`, `artPrix`, `artDescription`) VAL
 
 CREATE TABLE `t_client` (
   `idClient` int(11) NOT NULL,
-  `cliNom` varchar(50) COLLATE utf8_general_ci NOT NULL,
-  `cliPrenom` varchar(50) COLLATE utf8_general_ci NOT NULL,
-  `cliMail` varchar(25) COLLATE utf8_general_ci NOT NULL,
-  `cliMotDePasse` varchar(25) COLLATE utf8_general_ci NOT NULL,
-  `cliAdresse` varchar(200) COLLATE utf8_general_ci NOT NULL,
-  `cliLocalite` varchar(50) COLLATE utf8_general_ci NOT NULL,
+  `cliNom` varchar(50) NOT NULL,
+  `cliPrenom` varchar(50) NOT NULL,
+  `cliMail` varchar(254) NOT NULL,
+  `cliMotDePasse` varchar(25) NOT NULL,
+  `cliAdresse` varchar(200) NOT NULL,
+  `cliLocalite` varchar(50) NOT NULL,
   `cliCodePostal` int(11) NOT NULL,
-  `cliTel` varchar(20) COLLATE utf8_general_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `cliTel` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `t_client`
+-- Contenu de la table `t_client`
 --
 
 INSERT INTO `t_client` (`idClient`, `cliNom`, `cliPrenom`, `cliMail`, `cliMotDePasse`, `cliAdresse`, `cliLocalite`, `cliCodePostal`, `cliTel`) VALUES
-(1, 'Alexandre', 'MICHEL', 'alex@michel.co', '.Alex-44', 'ETML', 'Lausanne', 1001, '888 888 88 88');
+(1, 'Alexandre', 'MICHEL', 'alex@michel.co', '.Alex-44', 'ETML', 'Lausanne', 1001, '888 888 88 88'),
+(2, 'Canton', 'Dylan', 'cantondy@etml.educanet2.ch', '.etml-', 'rte de Glion 77', 'Glion', 1823, '+41766151157'),
+(4, 'Beggah', 'Bader', 'beggahba@etml.educanet2.ch', '.etml-', 'Chemin de la Cassinette 7', 'Lausanne', 1018, '+41787750702'),
+(6, 'Valzino', 'Benjamin', 'valzinobe@etml.educanet2.ch', '.etml-', 'Av. de Morges 7', 'Lausanne', 1004, '+41768035310'),
+(7, 'Simpson', 'Bart', 'simpsonbart@yahoo.fr', '.etml-', 'Route de Genève 25', 'Lausanne', 1004, '+41787787787'),
+(8, 'Delajungle', 'Eliza', 'delajungle.Eliza@ahoo.fr', '.etml-', 'Rue de la Borde 25', 'Lausanne', 1018, '+41787574747'),
+(10, 'Dinosaure', 'Denver', 'denver@yahoo.fr', '.etml-', 'Rue de la Borde 15', 'Lausanne', 1018, '+41778787744');
 
 -- --------------------------------------------------------
 
@@ -84,19 +88,22 @@ CREATE TABLE `t_commande` (
   `comQuantite` int(11) NOT NULL,
   `fkClient` int(11) NOT NULL,
   `fkArticle` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `t_commande`
+-- Contenu de la table `t_commande`
 --
 
 INSERT INTO `t_commande` (`idCommande`, `comDateDemande`, `comDateLivraison`, `comQuantite`, `fkClient`, `fkArticle`) VALUES
 (1, '2017-11-22', '2017-11-22', 2, 1, 1),
 (2, '2017-11-22', '2019-08-01', 50, 1, 2),
-(3, '2017-11-22', '2017-11-22', 3, 1, 2);
+(3, '2017-11-22', '2017-11-22', 3, 1, 2),
+(4, '2017-11-30', '2017-12-30', 20, 2, 2),
+(5, '2017-12-01', '2017-12-04', 10, 8, 1),
+(6, '2017-12-01', '2017-12-04', 2, 6, 2);
 
 --
--- Index pour les tables déchargées
+-- Index pour les tables exportées
 --
 
 --
@@ -120,7 +127,7 @@ ALTER TABLE `t_commande`
   ADD KEY `FK_t_commande_idArticle` (`fkArticle`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT pour les tables exportées
 --
 
 --
@@ -132,14 +139,14 @@ ALTER TABLE `t_article`
 -- AUTO_INCREMENT pour la table `t_client`
 --
 ALTER TABLE `t_client`
-  MODIFY `idClient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idClient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT pour la table `t_commande`
 --
 ALTER TABLE `t_commande`
-  MODIFY `idCommande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idCommande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
--- Contraintes pour les tables déchargées
+-- Contraintes pour les tables exportées
 --
 
 --
@@ -148,7 +155,7 @@ ALTER TABLE `t_commande`
 ALTER TABLE `t_commande`
   ADD CONSTRAINT `FK_t_commande_idArticle` FOREIGN KEY (`fkArticle`) REFERENCES `t_article` (`idArticle`),
   ADD CONSTRAINT `FK_t_commande_idClient` FOREIGN KEY (`fkClient`) REFERENCES `t_client` (`idClient`);
-COMMIT;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
