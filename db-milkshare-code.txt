@@ -1,0 +1,53 @@
+#------------------------------------------------------------
+#        Script MySQL.
+#------------------------------------------------------------
+
+CREATE DATABASE IF NOT EXISTS db_milkshare DEFAULT CHARACTER SET latin1 COLLATE latin1_general_ci;
+USE db_milkshare;
+
+#------------------------------------------------------------
+# Table: t_client
+#------------------------------------------------------------
+
+CREATE TABLE t_client(
+        idClient      int (11) Auto_increment  NOT NULL ,
+        cliNom        Varchar (50) NOT NULL ,
+        cliPrenom     Varchar (50) NOT NULL ,
+        cliMail       Varchar (25) NOT NULL ,
+        cliMotDePasse Varchar (25) NOT NULL ,
+        cliAdresse    Varchar (200) NOT NULL ,
+        cliLocalite   Varchar (50) NOT NULL ,
+        cliCodePostal Int NOT NULL ,
+        cliTel        Varchar (20) ,
+        PRIMARY KEY (idClient )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: t_commande
+#------------------------------------------------------------
+
+CREATE TABLE t_commande(
+        idCommande       int (11) Auto_increment  NOT NULL ,
+        comDateDemande   Date NOT NULL ,
+        comDateLivraison Date NOT NULL ,
+        comQuantite      Int NOT NULL ,
+        fkClient         Int NOT NULL ,
+        fkArticle        Int NOT NULL ,
+        PRIMARY KEY (idCommande )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: t_article
+#------------------------------------------------------------
+
+CREATE TABLE t_article(
+        idArticle int (11) Auto_increment  NOT NULL ,
+        artNom    Varchar (150) NOT NULL ,
+        artPrix   DECIMAL (15,3)  NOT NULL ,
+        PRIMARY KEY (idArticle )
+)ENGINE=InnoDB;
+
+ALTER TABLE t_commande ADD CONSTRAINT FK_t_commande_idClient FOREIGN KEY (fkClient) REFERENCES t_client(idClient);
+ALTER TABLE t_commande ADD CONSTRAINT FK_t_commande_idArticle FOREIGN KEY (fkArticle) REFERENCES t_article(idArticle);
