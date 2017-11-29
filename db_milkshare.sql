@@ -20,6 +20,9 @@ SET time_zone = "+00:00";
 -- Base de données :  `db_milkshare`
 --
 
+CREATE DATABASE IF NOT EXISTS db_milkshare DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE db_milkshare;
+
 -- --------------------------------------------------------
 
 --
@@ -152,6 +155,7 @@ ALTER TABLE `t_commande`
 ALTER TABLE `t_commande`
   ADD CONSTRAINT `FK_t_commande_idArticle` FOREIGN KEY (`fkArticle`) REFERENCES `t_article` (`idArticle`),
   ADD CONSTRAINT `FK_t_commande_idClient` FOREIGN KEY (`fkClient`) REFERENCES `t_client` (`idClient`);
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
