@@ -6,10 +6,10 @@ Description	:	Page statique de l'ex des surnoms de profs
 -->
 <html lang="fr">
     <?php
-    $actualDateTime = date_default_timezone_get();
+    date_default_timezone_get('Europe/Zurich');
+    $actualDateTime = date('Ymd');
     include("head.php");
     include("header.php");
-    echo "Date et heure actuelle: ". $actualDateTime;
     ?>
 
     <body>
@@ -28,6 +28,18 @@ Description	:	Page statique de l'ex des surnoms de profs
                         <th> Produits </th>
                         <th> Client </th>
                         <th> Adresse </th>
+                    </tr>
+                    <?php
+                    $request = new DbRequestSQL();
+
+                    $
+
+                    ?>
+                    <tr>
+                        <td>asdasd</td>
+                        <td>dasdsadaf</td>
+                        <td>asdsad</td>
+                        <td>dasdsasfgs</td>
                     </tr>
 
                 </table>

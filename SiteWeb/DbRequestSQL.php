@@ -28,8 +28,15 @@ class DbRequestSQL {
 	public function __destruct() {
         $this->link = null;
     }
-	
-	
+
+
+    /**
+     *  TODO: query for admin page
+     */
+	public function getAllCommandsByCloserDelivery (){
+	    $query = "SELECT * FROM t_commande JOIN ";
+    }
+
 	// selectionner tout les champs d'une entrée.
 
 	public function selectTable ($table ,$id) {
