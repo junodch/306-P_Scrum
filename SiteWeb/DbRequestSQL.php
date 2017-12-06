@@ -44,6 +44,12 @@ class DbRequestSQL {
 		return $this->executeAndReturnRequest($query);
 	}
 
+
+    /**
+     * @param $idClient
+     * @param $date (ex: '20061223 23:59:59.99') guillemets importants
+     * @return array
+     */
 	public function searchPastCommandFromClient ($idClient, $date) {
 		$query = "SELECT idCommande FROM t_commande WHERE fkClient = ".$idClient." AND comDateLivraison < '%".$date."%';";
 		return $this->executeAndReturnRequest($query);

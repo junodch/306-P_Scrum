@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mer 29 Novembre 2017 à 15:03
+-- Généré le :  Mer 06 Décembre 2017 à 14:21
 -- Version du serveur :  5.7.11
 -- Version de PHP :  7.0.3
 
@@ -19,9 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `db_milkshare`
 --
-
-CREATE DATABASE IF NOT EXISTS db_milkshare DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE db_milkshare;
 
 -- --------------------------------------------------------
 
@@ -67,8 +64,8 @@ CREATE TABLE `t_client` (
 --
 
 INSERT INTO `t_client` (`idClient`, `cliNom`, `cliPrenom`, `cliMail`, `cliMotDePasse`, `cliAdresse`, `cliLocalite`, `cliCodePostal`, `cliTel`) VALUES
-(1, 'Alexandre', 'MICHEL', 'alex@michel.co', '.Alex-44', 'ETML', 'Lausanne', 1001, '888 888 88 88'),
-(2, 'Canton', 'Dylan', 'cantondy@etml.educanet2.ch', '.etml-', 'rte de Glion 77', 'Glion', 1823, '+41766151157'),
+(1, 'Alexandre', 'MICHEL', 'alex@michel.co', '.etml-', 'Rue de Sébeillon 12', 'Lausanne', 1004, '888 888 88 88'),
+(2, 'Canton', 'Dylan', 'cantondy@etml.educanet2.ch', '.etml-', 'Rte de Lausanne 16', 'Le Mont-sur-Lausanne ', 1052, '+41766151157'),
 (4, 'Beggah', 'Bader', 'beggahba@etml.educanet2.ch', '.etml-', 'Chemin de la Cassinette 7', 'Lausanne', 1018, '+41787750702'),
 (6, 'Valzino', 'Benjamin', 'valzinobe@etml.educanet2.ch', '.etml-', 'Av. de Morges 7', 'Lausanne', 1004, '+41768035310'),
 (7, 'Simpson', 'Bart', 'simpsonbart@yahoo.fr', '.etml-', 'Route de Genève 25', 'Lausanne', 1004, '+41787787787'),
@@ -155,7 +152,6 @@ ALTER TABLE `t_commande`
 ALTER TABLE `t_commande`
   ADD CONSTRAINT `FK_t_commande_idArticle` FOREIGN KEY (`fkArticle`) REFERENCES `t_article` (`idArticle`),
   ADD CONSTRAINT `FK_t_commande_idClient` FOREIGN KEY (`fkClient`) REFERENCES `t_client` (`idClient`);
-
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
